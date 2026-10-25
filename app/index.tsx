@@ -38,6 +38,7 @@ import {
 import { useRouter, Stack } from 'expo-router';
 
 import { useTasks } from '../src/hooks/useTasks';
+import { useAuthContext } from '../src/contexts/AuthContext';
 import { TaskItem } from '../src/components/TaskItem';
 import { FilterBar } from '../src/components/FilterBar';
 import { EmptyState } from '../src/components/EmptyState';
@@ -51,6 +52,7 @@ import { EmptyState } from '../src/components/EmptyState';
  */
 export default function HomeScreen() {
   const router = useRouter();
+  const { signOut } = useAuthContext();
 
   // Desestrutura tudo que o hook expõe — veja src/hooks/useTasks.ts
   const {
@@ -121,6 +123,14 @@ export default function HomeScreen() {
                 <Text className="text-3xl">👤</Text>
               </TouchableOpacity>
 
+              {/* Botão de Logout */}
+              <TouchableOpacity
+                onPress={signOut}
+                accessibilityLabel="Sair"
+                accessibilityRole="button"
+              >
+                <Text className="text-3xl">🚪</Text>
+              </TouchableOpacity>
             </View>
           ),
         }}
